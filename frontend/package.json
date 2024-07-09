@@ -1,5 +1,20 @@
 {
   "name": "btwnote-rontend",
+  "description": "Front-end for BTWNote",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xrayya/BTWNote.git"
+  },
+  "keywords": [
+    "front-end",
+    "Hono.js"
+  ],
+  "author": "Xrayya (nur.alkhiyar@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xrayya/BTWNote/issues"
+  },
+  "homepage": "https://github.com/Xrayya/BTWNote#readme",
   "private": true,
   "version": "0.0.1",
   "type": "module",
