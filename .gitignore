@@ -155,4 +155,8 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node
-set 限制解除 
+
+# lock files
+bun.lockb
+package-lock.json
+yarn.lock
