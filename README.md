@@ -29,14 +29,17 @@ Here are the features that I want to implement in this project:
   - [TypeScript](https://www.typescriptlang.org/)
   - [SWC](https://swc.rs/)
   - [Tailwind CSS](https://tailwindcss.com/)
-  - [React Query](https://react-query.tanstack.com/)
-  - [React Router](https://reactrouter.com/)
-  - [React Hook Form](https://react-hook-form.com/)
+  - [Tanstack Query](https://tanstack.com/query/latest)
+  - [Tanstack Router](https://tanstack.com/router/latest)
+  - [Tanstack Form](https://tanstack.com/form/latest)
+  - [Zod](https://zod.dev/)
   - more as I go...
 - **Back-end**:
   - [Bun](https://bun.sh/)
   - [TypeScript](https://www.typescriptlang.org/)
   - [Hono](https://hono.dev/)
+  - [Prisma](https://www.prisma.io/)
+  - [Zod](https://zod.dev/)
   - more as I go...
 - **Database**:
   - [PostgreSQL](https://www.postgresql.org/)
