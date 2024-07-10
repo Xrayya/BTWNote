@@ -1,0 +1,27 @@
+{
+  "name": "btwnote-app",
+  "description": "Fun project to challenge my front-end, banc-end, and data structure skill",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xrayya/BTWNote.git"
+  },
+  "keywords": [
+    "Vite",
+    "React",
+    "Hono.js"
+  ],
+  "author": "Xrayya (nur.alkhiyar@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xrayya/BTWNote/issues"
+  },
+  "homepage": "https://github.com/Xrayya/BTWNote#readme",
+  "version": "0.0.1",
+  "scripts": {
+    "dev:fe": "bun run --cwd ./frontend dev",
+    "dev:be": "bun run --cwd ./backend dev",
+    "build": "bun run --cwd ./frontend build",
+    "lint": "bun run --cwd ./frontend lint",
+    "preview": "bun run --cwd ./frontend preview"
+  }
+}
