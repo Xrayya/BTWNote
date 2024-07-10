@@ -2,29 +2,99 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Inspiration
+- [https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design](https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design)
+- [https://dribbble.com/shots/10073632-Note-taking-app](https://dribbble.com/shots/10073632-Note-taking-app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Detail Design
+- **The design would be a three column layout**
+- **Left Column**:
+  - Profile picture located in the left column, the top left corner, the height of this section will be the same as the height of the top bar (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - The left column will have three section, one for navigation button, one for folder tree, one for tag list (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - The folder section and tag section will be collapsible
+  - The folder section and tag section has a `+` button to add a new folder or tag (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - Navigation button will contain the following buttons: Home, Search, Notes, Starred, and Tags (refer to [this design](https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design))
+  - The left column is collapsible (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+- **Middle Column**:
+  - The middle column will contain the list of notes, with a little snippet of the note, and the date it was last edited (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - There will be search bar to search for notes or folders in the top (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - Under the search bar, there will be the folder parent name (refer to [this design](https://dribbble.com/shots/10073632-Note-taking-app))
+  - If there's subfolders under the current folder, they are will be listed in separate section (bottom section). If one of then is clicked, the middle column will show the notes in that folder (refreshed)
+- **Right Column**:
+  - The right column will contain the note editor
+  - The note editor will have a title, a tag section, and the note content
+  - The title will be an input field and placed at the top left of the right column
+  - Under the title, there will be a tag section
+  - Under the tag section, there will be the note content
+  - The tag section will have a list of tags, and a `+` button to add a new tag
+  - The note content will be markdown editor
+  - The note editor will have a save button, a delete button, and a back button, located at the top right corner of the right column
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Behaviors
+- **Folder Tree**:
+  - The folder tree will be a tree structure
+  - The folder tree will have a root folder, which is the Home folder
+  - The root folder will have subfolders
+  - Each subfolder can have subfolders
+  - Each subfolder can have notes
+  - The folder tree will have a context menu
+  - The context menu will have the following options: Add Folder, Rename Folder, Delete Folder
+  - The context menu will have a `+` button to add a new folder
+  - The context menu will have a `...` button to open the context menu
+- **Tag List**: 
+  - The tag list will be a list of tags
+  - Each tag can have notes
+  - The tag list will have a context menu
+  - The context menu will have the following options: Add Tag, Rename Tag, Delete Tag
+  - The context menu will have a `+` button to add a new tag
+  - The context menu will have a `...` button to open the context menu
+- **Note List**: 
+  - The note list will be a list of notes
+  - Each note will have a title, a snippet of the note, and the date it was last edited
+  - The note list will have a context menu
+  - The context menu will have the following options: Add Note, Rename Note, Delete Note
+  - The context menu will have a `+` button to add a new note
+  - The context menu will have a `...` button to open the context menu
+- **Note Editor**: 
+  - The note editor will have a title, a tag section, and the note content
+  - The title will be an input field
+  - The tag section will have a list of tags
+  - The note content will be markdown editor
+  - The note editor will have a save button, a delete button, and a back button
+  - The save button will save the note
+  - The delete button will delete the note
+  - The back button will go back to the note list
+- **Search Bar**: 
+  - The search bar will be an input field
+  - The search bar will search for notes or folders
+  - The search bar will have a clear button to clear the search
+  - [Future improvement] The search bar will have a dropdown to select the search scope (Notes, Folders, Tags)
+  - [Future improvement] The search bar will have a filter (Contains, Starts with, Ends with, Exact match, Created date, Modified date, etc)
+- **Left Column**: 
+  - The left column will be collapsible
+  - The left column will have a profile picture with username and email
+  - The left column will have a navigation button with the following buttons: Home, Search, Notes, Starred, and Tags
+  - The left column will have a folder tree
+  - The left column will have a tag list
+  - The left column will have a `+` button to add a new folder or tag
+  - The left column will have a `...` button to open the context menu
+  - When the left column is collapsed, the user's username, email, navigation button text will be hidden
+  - When the left column is collapsed, the folder tree and tag list will be hidden
+- **Middle Column**: 
+  - The middle column will have a list of notes
+  - The middle column will have a search bar
+  - The middle column will have a folder parent name
+  - The middle column will have a section for subfolders
+  - The middle column will have a context menu
+  - The middle column will have a `+` button to add a new note
+  - The middle column will have a `...` button to open the context menu
+  - When a note is clicked, the note editor will show the note
+  - When a subfolder is clicked, the middle column will show the notes in that folder
+  - The middle column will be collapsed when entering home page or search page, notes pages, tags pages, and starred pages
+- **Right Column**:
+  - Most of the time, the right column will contain the note editor
+  - But when the user is in the home page, search page, notes pages, tags pages, and starred pages, the right column will filled with corresponding content
+  - In home page, the right column will contain the welcome message and recent notes
+  - In search page, the right column will contain a saerch bar the search result
+  - In notes list pages, the right column will contain the note list
+  - In tags list pages, the right column will contain the tag list
