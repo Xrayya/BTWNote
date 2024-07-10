@@ -160,3 +160,5 @@ sketch
 bun.lockb
 package-lock.json
 yarn.lock
+
+.fuse_hidden*
