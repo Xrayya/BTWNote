@@ -23,6 +23,7 @@
     "@hono/zod-validator": "^0.2.2",
     "hono": "^4.4.12",
     "prisma": "^5.16.2",
+    "prisma-zod-generator": "^0.8.13",
     "zod": "^3.23.8"
   },
   "devDependencies": {
