@@ -9,6 +9,15 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dir, "./src"),
+      "@backend": path.resolve(import.meta.dir, "../backend/src"),
+    },
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
     },
   },
 });
