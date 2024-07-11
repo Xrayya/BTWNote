@@ -22,6 +22,7 @@ Here are the features that I want to implement in this project:
 - [ ] Graph view
 - [ ] Dark mode
 - [ ] Markdown support
+- [ ] OAuth login
 
 ## Tech Stack
 - **Front-end**:
