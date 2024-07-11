@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@prisma": ["./prisma/*"]
+    },
+
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
 

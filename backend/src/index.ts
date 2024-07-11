@@ -1,9 +1,19 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { logger } from "hono/logger";
+import { prettyJSON } from "hono/pretty-json";
+import userRoute from "./routes/user";
+import { cors } from "hono/cors";
 
-const app = new Hono()
+const backend = new Hono().basePath("/api");
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+backend.use(cors());
+backend.use(logger());
+backend.use(prettyJSON());
 
-export default app
+backend.route("/users", userRoute);
+
+backend.get("/", (c) => {
+  return c.json({ message: "You are entering the root of BTWNote API." }, 200);
+});
+
+export default backend;
