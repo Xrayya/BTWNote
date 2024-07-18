@@ -16,3 +16,108 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+/// The user model represents the user entity in the database.
+model user {
+  /// The unique identifier of the user.
+  id         String   @id @default(cuid())
+  /// The email address of the user.
+  email      String   @unique
+  /// The password of the user.
+  password   String
+  /// The time the user was created.
+  created_at DateTime @default(now())
+  /// The time the user was last updated.
+  updated_at DateTime @updatedAt
+
+  /// The notes that the user has created. This is a relation to the note model. Thus, returning the whole note object.
+  notes     note[]
+  /// The folders that the user has created. This is a relation to the folder model. Thus, returning the whole folder object.
+  folders   folder[]
+  /// The tags that the user has created. This is a relation to the tag model. Thus, returning the whole tag object.
+  user_tags tag[]
+}
+
+/// The folder model represents the folder entity in the database.
+model folder {
+  /// The unique identifier of the folder.
+  id         String   @id @default(cuid())
+  /// The id of user that owns the folder.
+  user_id    String
+  /// The id parent folder of the folder.
+  parent_id  String?
+  /// The name of the folder.
+  name       String
+  /// The time the folder was created.
+  created_at DateTime @default(now())
+  /// The time the folder was last updated.
+  updated_at DateTime @updatedAt
+
+  /// The user that owns the folder. This is a relation to the user model. Thus, returning the whole user object.
+  owner         user     @relation(fields: [user_id], references: [id])
+  /// The parent folder of the folder. This is a relation to the folder model. Thus, returning the whole folder object.
+  parent_folder folder?  @relation("parent_child_folder", fields: [parent_id], references: [id])
+  /// The subfolders of the folder. This is a relation to the folder model. Thus, returning the whole folder object.
+  subfolders    folder[] @relation("parent_child_folder")
+  /// The notes that are in the folder. This is a relation to the note model. Thus, returning the whole note object.
+  notes         note[]
+}
+
+/// The note model represents the note entity in the database.
+model note {
+  /// The unique identifier of the note.
+  id         String   @id @default(cuid())
+  /// The id of user that owns the note.
+  user_id    String
+  /// The id of the folder that the note is in.
+  folder_id  String
+  /// The title of the note.
+  title      String
+  /// The content of the note.
+  content    String
+  /// The time the note was created.
+  created_at DateTime @default(now())
+  /// The time the note was last updated.
+  updated_at DateTime @updatedAt
+
+  /// The user that owns the note. This is a relation to the user model. Thus, returning the whole user object.
+  owner    user       @relation(fields: [user_id], references: [id])
+  /// The folder that the note is in. This is a relation to the folder model. Thus, returning the whole folder object.
+  folder   folder     @relation(fields: [folder_id], references: [id])
+  /// The tags that are associated with the note. This is a relation to the tag model. Thus, returning the whole tag object.
+  note_tag note_tag[]
+}
+
+/// The tag model represents the tag entity in the database.
+model tag {
+  /// The unique identifier of the tag.
+  id         String   @id @default(cuid())
+  /// The tag name.
+  name       String
+  /// The id of user that owns the tag.
+  user_id    String
+  /// The time the tag was created.
+  created_at DateTime @default(now())
+  /// The time the tag was last updated.
+  updated_at DateTime @updatedAt
+
+  /// The user that owns the tag. This is a relation to the user model. Thus, returning the whole user object.
+  owner user       @relation(fields: [user_id], references: [id])
+  /// The notes that are associated with the tag. This is a relation to the note model. Thus, returning the whole note object.
+  notes note_tag[]
+}
+
+/// The note_tag model represents the note_tag entity in the database. It is a many-to-many relationship between the note and tag models.
+model note_tag {
+  /// The id of the note.
+  note_id String
+  /// The id of the tag.
+  tag_id  String
+
+  /// The note that the tag is associated with. This is a relation to the note model. Thus, returning the whole note object.
+  note note @relation(fields: [note_id], references: [id])
+  /// The tag that the note is associated with. This is a relation to the tag model. Thus, returning the whole tag object.
+  tag  tag  @relation(fields: [tag_id], references: [id])
+
+  @@id([note_id, tag_id])
+}
